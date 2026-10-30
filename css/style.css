@@ -1,0 +1,412 @@
+/* ============================================================
+   Expense & Budget Visualizer — style.css
+   Only 1 CSS file (TC-1 / Folder Rules)
+   ============================================================ */
+
+/* ── CSS Variables (light theme) ───────────────────────── */
+:root {
+  --bg:         #f0f2f5;
+  --surface:    #ffffff;
+  --surface-2:  #fafafa;
+  --border:     #e0e0e0;
+  --border-2:   #eeeeee;
+  --text:        #222222;
+  --text-muted:  #888888;
+  --text-label:  #555555;
+  --primary:    #2196f3;
+  --primary-dk: #1976d2;
+  --danger:     #e53935;
+  --danger-dk:  #c62828;
+  --warn-bg:    #fff3e0;
+  --warn-border:#ff9800;
+  --warn-text:  #e65100;
+  --shadow:     0 2px 8px rgba(0,0,0,.07);
+  --radius:     14px;
+  --radius-sm:  8px;
+  --radius-xs:  7px;
+}
+
+/* ── Dark theme overrides ───────────────────────────────── */
+[data-theme="dark"] {
+  --bg:         #121212;
+  --surface:    #1e1e1e;
+  --surface-2:  #2a2a2a;
+  --border:     #333333;
+  --border-2:   #2e2e2e;
+  --text:        #e8e8e8;
+  --text-muted:  #888888;
+  --text-label:  #aaaaaa;
+  --primary:    #64b5f6;
+  --primary-dk: #42a5f5;
+  --shadow:     0 2px 8px rgba(0,0,0,.4);
+  --warn-bg:    #2d1f00;
+  --warn-border:#ff9800;
+  --warn-text:  #ffb74d;
+}
+
+/* ── Reset & base ───────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background .25s, color .25s;
+}
+
+/* ── Header ─────────────────────────────────────────────── */
+header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 14px 20px;
+}
+
+header h1 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: .3px;
+}
+
+.btn-icon {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 20px;
+  transition: background .2s;
+}
+
+.btn-icon:hover {
+  background: var(--surface-2);
+}
+
+/* ── Container ──────────────────────────────────────────── */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ── Card base ──────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 22px 20px;
+}
+
+/* ── Balance card ───────────────────────────────────────── */
+.balance-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 26px 20px;
+  text-align: center;
+}
+
+.balance-card .label {
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.balance-card .amount {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  transition: color .25s;
+}
+
+/* ── Limit banner ───────────────────────────────────────── */
+.limit-banner {
+  background: var(--warn-bg);
+  border: 1px solid var(--warn-border);
+  border-radius: var(--radius-sm);
+  padding: 10px 16px;
+  color: var(--warn-text);
+  font-size: .88rem;
+  font-weight: 600;
+}
+
+/* ── Form ───────────────────────────────────────────────── */
+.form-card h2 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+  color: var(--text);
+}
+
+.field {
+  margin-bottom: 14px;
+}
+
+.field label {
+  display: block;
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--text-label);
+  margin-bottom: 5px;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: .95rem;
+  color: var(--text);
+  background: var(--surface);
+  transition: border-color .2s, box-shadow .2s, background .25s;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.field input:focus,
+.field select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(33,150,243,.15);
+}
+
+.field input.error,
+.field select.error {
+  border-color: var(--danger);
+}
+
+.error-msg {
+  font-size: .75rem;
+  color: var(--danger);
+  margin-top: 4px;
+  display: none;
+}
+
+.error-msg.visible {
+  display: block;
+}
+
+.btn-add {
+  width: 100%;
+  padding: 12px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: .95rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 6px;
+  transition: background .2s, transform .1s;
+}
+
+.btn-add:hover  { background: var(--primary-dk); }
+.btn-add:active { transform: scale(.98); }
+
+/* ── Controls row ───────────────────────────────────────── */
+.controls-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: flex-end;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+  min-width: 160px;
+}
+
+.control-group label {
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--text-label);
+}
+
+.control-group select,
+.control-group input {
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: .9rem;
+  color: var(--text);
+  background: var(--surface);
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: border-color .2s, background .25s;
+}
+
+.control-group select:focus,
+.control-group input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(33,150,243,.15);
+}
+
+/* ── Bottom grid ────────────────────────────────────────── */
+.bottom-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* ── Transaction list ───────────────────────────────────── */
+.list-card h2,
+.chart-card h2 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 14px;
+  color: var(--text);
+}
+
+.transaction-list {
+  overflow-y: auto;
+  max-height: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-right: 4px;
+}
+
+.transaction-list::-webkit-scrollbar        { width: 5px; }
+.transaction-list::-webkit-scrollbar-track  { background: var(--surface-2); border-radius: 4px; }
+.transaction-list::-webkit-scrollbar-thumb  { background: var(--border); border-radius: 4px; }
+
+.tx-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border: 1px solid var(--border-2);
+  border-radius: 10px;
+  background: var(--surface-2);
+  gap: 10px;
+  transition: background .25s, border-color .25s;
+}
+
+/* Highlight: over-limit item */
+.tx-item.over-limit {
+  border-color: var(--warn-border);
+  background: var(--warn-bg);
+}
+
+.tx-info    { flex: 1; min-width: 0; }
+
+.tx-name {
+  font-size: .9rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text);
+}
+
+.tx-amount {
+  font-size: .95rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-top: 2px;
+}
+
+.tx-badge {
+  display: inline-block;
+  font-size: .7rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 20px;
+  margin-top: 4px;
+  color: #fff;
+}
+
+.badge-Food      { background: #4caf50; }
+.badge-Transport { background: #2196f3; }
+.badge-Fun       { background: #ff9800; }
+
+.btn-delete {
+  padding: 7px 14px;
+  background: var(--danger);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-xs);
+  font-size: .8rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background .2s;
+}
+
+.btn-delete:hover { background: var(--danger-dk); }
+
+.empty-state {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: .88rem;
+  padding: 30px 0;
+}
+
+/* ── Chart ──────────────────────────────────────────────── */
+.chart-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.chart-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+}
+
+.chart-wrapper canvas {
+  max-width: 100%;
+}
+
+.no-data-msg {
+  color: var(--text-muted);
+  font-size: .88rem;
+  text-align: center;
+}
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 620px) {
+  .bottom-grid {
+    grid-template-columns: 1fr;
+  }
+
+  header h1 {
+    font-size: 1rem;
+  }
+
+  .balance-card .amount {
+    font-size: 2rem;
+  }
+}

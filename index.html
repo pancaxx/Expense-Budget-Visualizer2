@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Expense &amp; Budget Visualizer</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ── Header ─────────────────────────────────────────── -->
+  <header>
+    <h1>Expense &amp; Budget Visualizer</h1>
+    <button id="themeToggle" class="btn-icon" aria-label="Toggle dark/light mode" title="Toggle dark/light mode">
+      🌙
+    </button>
+  </header>
+
+  <div class="container">
+
+    <!-- ── Balance ──────────────────────────────────────── -->
+    <div class="balance-card">
+      <div class="label">Total Balance</div>
+      <div class="amount" id="totalBalance">$0.00</div>
+    </div>
+
+    <!-- ── Spending Limit Banner ────────────────────────── -->
+    <div class="limit-banner" id="limitBanner" hidden>
+      ⚠️ <span id="limitMsg"></span>
+    </div>
+
+    <!-- ── Form ─────────────────────────────────────────── -->
+    <div class="card form-card">
+      <h2>Add Transaction</h2>
+      <form id="txForm" novalidate>
+
+        <div class="field">
+          <label for="itemName">Item Name</label>
+          <input type="text" id="itemName" placeholder="e.g. Coffee" autocomplete="off" />
+          <div class="error-msg" id="errName">Item name is required.</div>
+        </div>
+
+        <div class="field">
+          <label for="amount">Amount</label>
+          <input type="number" id="amount" placeholder="0.00" min="0.01" step="0.01" />
+          <div class="error-msg" id="errAmount">Enter a valid amount greater than 0.</div>
+        </div>
+
+        <div class="field">
+          <label for="category">Category</label>
+          <select id="category">
+            <option value="">-- Select category --</option>
+            <option value="Food">Food</option>
+            <option value="Transport">Transport</option>
+            <option value="Fun">Fun</option>
+          </select>
+          <div class="error-msg" id="errCategory">Please select a category.</div>
+        </div>
+
+        <button type="submit" class="btn-add">Add Transaction</button>
+      </form>
+    </div>
+
+    <!-- ── Controls row ──────────────────────────────────── -->
+    <div class="controls-row">
+      <!-- Sort -->
+      <div class="control-group">
+        <label for="sortSelect">Sort by:</label>
+        <select id="sortSelect">
+          <option value="newest">Newest First</option>
+          <option value="oldest">Oldest First</option>
+          <option value="amount-desc">Amount (High → Low)</option>
+          <option value="amount-asc">Amount (Low → High)</option>
+          <option value="category">Category (A–Z)</option>
+        </select>
+      </div>
+
+      <!-- Spending limit -->
+      <div class="control-group">
+        <label for="limitInput">Spending Limit ($):</label>
+        <input type="number" id="limitInput" placeholder="e.g. 100" min="0" step="0.01" />
+      </div>
+    </div>
+
+    <!-- ── List + Chart ──────────────────────────────────── -->
+    <div class="bottom-grid">
+
+      <div class="card list-card">
+        <h2>Transactions</h2>
+        <div class="transaction-list" id="txList">
+          <div class="empty-state">No transactions yet.</div>
+        </div>
+      </div>
+
+      <div class="card chart-card">
+        <h2>Spending by Category</h2>
+        <div class="chart-wrapper" id="chartWrapper">
+          <span class="no-data-msg">Add transactions to see the chart.</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div><!-- /.container -->
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
